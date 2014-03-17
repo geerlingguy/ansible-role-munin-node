@@ -1,0 +1,10 @@
+---
+- name: Ensure munin-node is installed.
+  apt: pkg=munin-node state=installed
+
+- name: Ensure munin-node is running.
+  service: name=munin-node state=started enabled=yes
+
+- name: Copy munin-node configuration.
+  template: src=munin-node.conf.j2 dest=/etc/munin/munin-node.conf owner=root group=root mode=0644
+  notify: restart munin-node
