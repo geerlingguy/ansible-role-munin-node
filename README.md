@@ -20,36 +20,35 @@ The host and port to which munin-node will bind. Common host options are `127.0.
 
 A list of IP addresses formatted as a python-style regular expression. Must use single quotes to allow the proper regex escaping to pass through to the configuration file. Hosts with these IP addresses will be allowed to connect to the server and get detailed system stats via munin-node.
 
-### Plugins definition
-You can also enable few plugins using `munin_node_plugins` list, by adding hashmaps to it.
-Every hashmap :
-- Must have `name` field - destination name of the plugin
-- Can have `plugin` field - this is used as name of the original plugin
+### Munin Plugin Configuration
 
-Example settings:
+You can enable plugins using the `munin_node_plugins` list, like so:
 
-````
-- name: uptime
-- name: if_eth0
-  plugin: if_
-````
+    munin_node_plugins:
+      - name: uptime
 
-### Plugin settings definition
-It is also possible to generate plugin configuration based on munin_node_config hashmap.
-Every first-level field name is section name that is used by munin as plugin matcher.
-All fields inside are used as variable name and value.
-Example attribute:
-````
-  "ps_test":
-    "env.regex" : "bash"
-    "env.name" : "bash"
-````
-Will generate :
-````
-[ps_test]
-env.regex bash
-env.name bash"
-`````
+If the name of the resulting plugin does not match the name of the munin plugin from which it is generated (as is the case, say, with the `if_` plugin), you need to add a `plugin` field to the list item, like so:
+
+    munin_node_plugins:
+      - name: if_eth0
+        plugin: if_
+
+#### Plugin settings
+
+If you need to add plugin configuration for plugins you've added via `munin_node_plugins`, you can do so with a simple hashmap that has the plugin name (which will be the `[plugin]` section in the resulting configuration file), and a list of variable names and values. For example:
+
+    munin_node_config: {
+      "ps_test": {
+        "env.regex": "bash",
+        "env.name": "bash"
+      }
+    }
+
+This configuration will generate a configuration file at `/etc/munin/plugin-conf.d/ansible.conf` with the following contents:
+
+    [ps_test]
+    env.regex bash
+    env.name bash
 
 ## Dependencies
 
@@ -67,6 +66,6 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2014 by Jeff Geerling (@geerlingguy), author of Ansible for DevOps. You can find out more about the book at http://ansiblefordevops.com/, and learn about the author at http://jeffgeerling.com/.
+This role was created in 2014 by [Jeff Geerling](http://jeffgeerling.com/), author of [Ansible for DevOps](http://ansiblefordevops.com/).
 
-Small contribution was made by Rafał Trójniak <ansible-galaxy@trojniak.net>
+Munin plugin configuration was added by Rafał Trójniak <ansible-galaxy@trojniak.net>.

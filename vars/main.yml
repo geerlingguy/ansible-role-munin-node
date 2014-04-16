@@ -6,19 +6,23 @@ munin_node_bind_port: "4949"
 munin_node_allowed_ips:
   - '^127\.0\.0\.1$'
 
-# Source of the plugins - where they are linked from
+# Source and destination of munin plugins.
 munin_plugin_src_path: /usr/share/munin/plugins/
-# Destination of the plugins - where they should be linked to
-munin_plugin_dset_path: /etc/munin/plugins/
-#List of munin plugins to enable
+munin_plugin_dest_path: /etc/munin/plugins/
+
+# List of munin plugins to enable.
 munin_node_plugins: []
-#    - name: uptime
-#    - name: if_eth0
-#      plugin: if_
-#    - name: ps_test
-#      plugin: ps_
-#
-munin_node_config: {}
-#  "ps_test":
-#    "env.regex" : "bash"
-#    "env.name" : "bash"
+  # - name: uptime
+  # - name: if_eth0
+  #   plugin: if_
+  # - name: ps_test
+  #   plugin: ps_
+
+# Plugin configuration options (the key is the plugin heading, items in the
+# array will be options for the plugin).
+munin_node_config: {
+  # "ps_test": {
+  #   "env.regex": "bash",
+  #   "env.name": "bash"
+  # }
+}
