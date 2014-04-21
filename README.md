@@ -1,6 +1,6 @@
 # Ansible Role: Munin Node
 
-BUILD STATUS (will go here).
+[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-munin-node.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-munin-node)
 
 Installs munin-node, a monitoring system endpoint, on Debian/Ubuntu.
 
