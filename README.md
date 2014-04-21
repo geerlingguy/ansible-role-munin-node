@@ -1,5 +1,7 @@
 # Ansible Role: Munin Node
 
+BUILD STATUS (will go here).
+
 Installs munin-node, a monitoring system endpoint, on Debian/Ubuntu.
 
 ## Requirements
