@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/geerlingguy/ansible-role-munin-node.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-munin-node)
 
-Installs munin-node, a monitoring system endpoint, on Debian/Ubuntu.
+Installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
 
 ## Requirements
 
-None.
+If using RedHat/CentOS, make sure you have the EPEL repository installed prior to using this role (you can install it using the [`geerlingguy.repo-epel`](https://galaxy.ansible.com/list#/roles/436) role).
 
 ## Role Variables
 

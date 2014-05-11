@@ -1,6 +1,11 @@
 ---
-- name: Ensure munin-node is installed.
+- name: Ensure munin-node is installed (RedHat).
+  yum: pkg=munin-node state=installed enablerepo=epel
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure munin-node is installed (Debian).
   apt: pkg=munin-node state=installed
+  when: ansible_os_family == 'Debian'
 
 - name: Copy munin-node configuration.
   template: >
