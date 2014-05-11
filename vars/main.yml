@@ -2,9 +2,12 @@
 munin_node_bind_host: "*"
 munin_node_bind_port: "4949"
 
+munin_node_host_name: ''
+
 # Munin requires IPs be added as regular expressions.
 munin_node_allowed_ips:
   - '^127\.0\.0\.1$'
+  - '^::1$'
 
 # Source and destination of munin plugins.
 munin_plugin_src_path: /usr/share/munin/plugins/

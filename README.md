@@ -17,6 +17,10 @@ Available variables are listed below, along with default values (see `vars/main.
 
 The host and port to which munin-node will bind. Common host options are `127.0.0.1` (localhost), or `*` (bind to all IP addresses). `4949` is the default Munin port.
 
+    munin_node_host_name: ''
+
+Set this explicitly if the munin master doesn't report the correct hostname when telnetting in to munin-node. In most cases, the default should work fine.
+
     munin_node_allowed_ips:
       - '^127\.0\.0\.1$'
 
