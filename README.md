@@ -10,7 +10,7 @@ If using RedHat/CentOS, make sure you have the EPEL repository installed prior t
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `vars/main.yml`):
+Available variables are listed below, along with default values:
 
     munin_node_bind_host: "*"
     munin_node_bind_port: "4949"
