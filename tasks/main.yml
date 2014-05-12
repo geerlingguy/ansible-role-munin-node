@@ -21,7 +21,7 @@
   template: >
     src=plugin-conf.j2
     dest=/etc/munin/plugin-conf.d/ansible.conf
-    owner=munin group=munin mode=640
+    owner=root group=root mode=644
   notify: restart munin-node
 
 - name: Enable additional plugins.
