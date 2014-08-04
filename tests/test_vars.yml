@@ -3,8 +3,6 @@ munin_node_plugins:
   - name: uptime
   - name: if_eth1
     plugin: if_
-  - name: px_test
-    plugin: px_
 
 munin_node_config: {
    "ps_test": {
