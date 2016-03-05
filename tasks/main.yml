@@ -3,33 +3,37 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Ensure munin-node is installed (RedHat).
-  yum: pkg=munin-node state=installed enablerepo=epel
+  yum: name=munin-node state=installed enablerepo=epel
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure munin-node is installed (Debian).
-  apt: pkg=munin-node state=installed
+  apt: name=munin-node state=installed
   when: ansible_os_family == 'Debian'
 
 - name: Copy munin-node configuration.
-  template: >
-    src=munin-node.conf.j2
-    dest=/etc/munin/munin-node.conf
-    owner=root group=root mode=644
+  template:
+    src: munin-node.conf.j2
+    dest: /etc/munin/munin-node.conf
+    owner: root
+    group: root
+    mode: 0644
   notify: restart munin-node
 
 - name: Generate plugin configuration.
-  template: >
-    src=plugin-conf.j2
-    dest=/etc/munin/plugin-conf.d/ansible.conf
-    owner=root group=root mode=644
+  template:
+    src: plugin-conf.j2
+    dest: /etc/munin/plugin-conf.d/ansible.conf
+    owner: root
+    group: root
+    mode: 0644
   notify: restart munin-node
 
 - name: Enable additional plugins.
-  file: >
-    path={{ munin_plugin_dest_path }}{{ item.name }}
-    src={{ munin_plugin_src_path }}{{ item.plugin | default( item.name ) }}
-    state=link
-  with_items: munin_node_plugins
+  file:
+    path: "{{ munin_plugin_dest_path }}{{ item.name }}"
+    src: "{{ munin_plugin_src_path }}{{ item.plugin | default( item.name ) }}"
+    state: link
+  with_items: "{{ munin_node_plugins }}"
   notify: restart munin-node
 
 - name: Ensure munin-node is running.
