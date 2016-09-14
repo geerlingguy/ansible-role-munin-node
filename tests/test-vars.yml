@@ -1,0 +1,18 @@
+---
+- hosts: all
+
+  vars:
+    munin_node_plugins:
+      - name: uptime
+      - name: if_eth1
+        plugin: if_
+
+    munin_node_config: {
+       "ps_test": {
+         "env.regex": "bash",
+         "env.name": "bash"
+       }
+    }
+
+  roles:
+    - role_under_test

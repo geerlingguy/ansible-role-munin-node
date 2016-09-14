@@ -1,7 +1,0 @@
----
-- hosts: localhost
-  remote_user: root
-  vars_files:
-    - test_vars.yml
-  roles:
-    - ansible-role-munin-node
