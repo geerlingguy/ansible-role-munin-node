@@ -7,24 +7,29 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test.yml
+    nc_option: -vn
   - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test.yml
+    nc_option: -z
   - distro: ubuntu1404
     init: /sbin/init
     run_opts: ""
     playbook: test.yml
+    nc_option: -z
 
   # Test different options.
   - distro: centos7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test-vars.yml
+    nc_option: -vn
   - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test-vars.yml
+    nc_option: -z
 
 services:
   - docker
@@ -54,7 +59,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Check if munin is responding on port 4949.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm nc -z localhost 4949'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm nc ${nc_option} localhost 4949'
 
 after_success:
   # Clean up.
