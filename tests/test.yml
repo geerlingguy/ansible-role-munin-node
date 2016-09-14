@@ -6,8 +6,13 @@
       apt: update_cache=yes
       when: ansible_os_family == 'Debian'
 
-    - name: Install test dependencies.
+    - name: Install test dependencies (Debian).
       package: name=netcat state=present
+      when: ansible_os_family == 'Debian'
+
+    - name: Install test dependencies (RedHat).
+      package: name=nc state=present
+      when: ansible_os_family == 'RedHat'
 
   roles:
     - role_under_test
