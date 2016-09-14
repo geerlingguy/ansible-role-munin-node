@@ -59,7 +59,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Check if munin is responding on port 4949.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm nc ${nc_option} localhost 4949'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm nc ${nc_option} 127.0.0.1 4949'
 
 after_success:
   # Clean up.
