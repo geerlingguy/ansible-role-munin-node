@@ -18,6 +18,7 @@
     - name: Update apt cache.
       apt: update_cache=yes cache_valid_time=600
       when: ansible_os_family == 'Debian'
+      changed_when: false
 
     - name: Install test dependencies (Debian).
       package: name=netcat state=present
