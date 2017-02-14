@@ -2,7 +2,10 @@
 
 [![Build Status](https://travis-ci.org/geerlingguy/ansible-role-munin-node.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-munin-node)
 
-Installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
+This role, by default, installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
+
+In addition, this forked repo has been created to decouple Datadog and Munin for the monitoring role (deprecated). Memcache, Redis, and MySQL require additional modules/plugins which require functionality to copy these modules onto a given host. Rather than duplicating this in several YAML files, the 'munin_modules' variable has been defined to copy a module to a specific destination with unique owners,groups, and modes.
+
 
 ## Requirements
 
