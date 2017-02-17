@@ -10,6 +10,57 @@
   apt: name=munin-node state=installed
   when: ansible_os_family == 'Debian'
 
+- name: Create /usr/share/munin/plugins
+  file:
+    path=/usr/share/munin/plugins/
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+    recurse=yes
+
+- name: Make sure necessary monitoring packages are installed
+  yum: name={{ item }} state=installed
+  with_items:
+    - munin-node
+    - ipmitool
+  notify: restart munin-node
+
+- name: Removing old IPMI configurations
+  file: path={{ item }} state=absent
+  with_items:
+    - /usr/share/munin/plugins/ipmi_sensor_
+    - /etc/munin/ipmi
+    - /etc/munin/plugins/ipmi_sensor_u_volts
+    - /etc/munin/plugins/ipmi_sensor_u_watts
+    - /etc/munin/plugins/ipmi_sensor_u_amps
+    - /etc/munin/plugins/ipmi_sensor_u_rpm
+
+- name: Adding new IPMI configuration
+  file:
+    dest="{{ item }}"
+    src=/usr/share/munin/plugins/ipmi_
+    state=link
+  with_items:
+    - /etc/munin/plugins/ipmi_fans
+    - /etc/munin/plugins/ipmi_temp
+    - /etc/munin/plugins/ipmi_power
+  notify: restart munin-node
+
+- name: Add TCP munin plugin
+  file:
+    dest=/etc/munin/plugins/tcp
+    src=/usr/share/munin/plugins/tcp
+    state=link
+  notify: restart munin-node
+
+- name: Make sure postfix plugins are absent
+  file: path={{ item }} state=absent
+  with_items:
+    - /etc/munin/plugins/postfix_mailqueue
+    - /etc/munin/plugins/postfix_mailvolume
+  notify: restart munin-node
+
 - name: Copy munin-node configuration.
   template:
     src: munin-node.conf.j2
