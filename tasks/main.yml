@@ -28,6 +28,8 @@
     mode: 0644
   notify: restart munin-node
 
+- name: Install perl-DBD-MySQL  yum: state=present name=perl-DBD-MySQL   when: mysql_server_monitoring is defined and mysql_server_monitoring
+
 - name: Copy modules onto server.
   copy:
     src="{{ item.source }}"
