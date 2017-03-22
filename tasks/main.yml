@@ -92,8 +92,8 @@
   yum: state=present name=perl-DBD-MySQL
   when: ansible_os_family == 'RedHat' and mysql_server_monitoring
 
-- name: Install perl-DBD-MySQL (Debian).
-  apt: state=present name=perl-DBD-MySQL
+- name: Install libdbd-mysql-perl (Debian).
+  apt: state=present name=libdbd-mysql-perl
   when: ansible_os_family == 'Debian' and mysql_server_monitoring
 
 - name: Copy modules onto server.
