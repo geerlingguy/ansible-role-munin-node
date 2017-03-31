@@ -33,7 +33,10 @@
     path: "{{ munin_plugin_dest_path }}{{ item.name }}"
     src: "{{ munin_plugin_src_path }}{{ item.plugin | default( item.name ) }}"
     state: link
-  with_items: "{{ munin_node_plugins }}"
+  with_flattened:
+    - '{{ munin_node_plugins }}'
+    - '{{ munin_node_group_plugins }}'
+    - '{{ munin_node_host_plugins }}'
   notify: restart munin-node
 
 - name: Ensure munin-node is running.

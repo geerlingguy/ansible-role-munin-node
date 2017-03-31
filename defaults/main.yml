@@ -20,6 +20,8 @@ munin_node_plugins: []
   #   plugin: if_
   # - name: ps_test
   #   plugin: ps_
+munin_node_group_plugins: []
+munin_node_host_plugins: []
 
 # Plugin configuration options (the key is the plugin heading, items in the
 # array will be options for the plugin).
