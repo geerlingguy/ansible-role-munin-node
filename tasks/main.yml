@@ -28,6 +28,16 @@
     mode: 0644
   notify: restart munin-node
 
+- name: Remove unwanted plugins.
+  file:
+    path: "{{ munin_plugin_dest_path }}{{ item.name }}"
+    state: absent
+  with_flattened:
+    - '{{ munin_node_absent_plugins }}'
+    - '{{ munin_node_group_absent_plugins }}'
+    - '{{ munin_node_host_absent_plugins }}'
+  notify: restart munin-node
+
 - name: Enable additional plugins.
   file:
     path: "{{ munin_plugin_dest_path }}{{ item.name }}"
