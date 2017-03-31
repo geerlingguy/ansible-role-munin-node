@@ -39,6 +39,13 @@ If the name of the resulting plugin does not match the name of the munin plugin 
       - name: if_eth0
         plugin: if_
 
+You can exclude a plugin previously enabled, like so:
+
+    munin_node_absent_plugins:
+      - name: uptime
+
+Use [inventory level scoped variables](https://docs.debops.org/en/latest/debops-policy/docs/code-standards-policy.html#inventory-level-scoped-variables) as defined by the [DebOps](https://debops.org) project to easier define universal/group/host specific plugins.
+
 #### Plugin settings
 
 If you need to add plugin configuration for plugins you've added via `munin_node_plugins`, you can do so with a simple hashmap that has the plugin name (which will be the `[plugin]` section in the resulting configuration file), and a list of variable names and values. For example:
