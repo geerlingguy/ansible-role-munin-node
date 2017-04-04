@@ -36,5 +36,12 @@
   with_items: "{{ munin_node_plugins }}"
   notify: restart munin-node
 
+- name: Disable dedicated plugins.
+  file:
+    path: "{{ munin_plugin_dest_path }}{{ item.name }}"
+    state: absent
+  with_items: "{{ munin_node_plugins_disabled }}"
+  notify: restart munin-node
+
 - name: Ensure munin-node is running.
   service: name=munin-node state=started enabled=yes
