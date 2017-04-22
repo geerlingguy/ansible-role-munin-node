@@ -28,6 +28,16 @@
     mode: 0644
   notify: restart munin-node
 
+- name: Copy modules onto server.
+  copy:
+    src="{{ item.source }}"
+    dest="{{ item.destination }}"
+    owner="{{ item.owner }}"
+    group="{{ item.group }}"
+    mode="{{ item.mode }}"
+  with_items: "{{ munin_modules }}"
+  notify: restart munin-node
+
 - name: Enable additional plugins.
   file:
     path: "{{ munin_plugin_dest_path }}{{ item.name }}"

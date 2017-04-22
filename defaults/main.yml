@@ -13,6 +13,9 @@ munin_node_allowed_ips:
 munin_plugin_src_path: /usr/share/munin/plugins/
 munin_plugin_dest_path: /etc/munin/plugins/
 
+# List of munin modules to copy to the server.
+munin_modules: []
+
 # List of munin plugins to enable.
 munin_node_plugins: []
   # - name: uptime
