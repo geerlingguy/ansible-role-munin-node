@@ -1,4 +1,5 @@
 ---
+mysql_server_monitoring: false
 munin_node_bind_host: "*"
 munin_node_bind_port: "4949"
 
@@ -12,6 +13,9 @@ munin_node_allowed_ips:
 # Source and destination of munin plugins.
 munin_plugin_src_path: /usr/share/munin/plugins/
 munin_plugin_dest_path: /etc/munin/plugins/
+
+# List of munin modules to copy to the server.
+munin_modules: []
 
 # List of munin plugins to enable.
 munin_node_plugins: []
