@@ -9,6 +9,9 @@ munin_node_allowed_ips:
   - '^127\.0\.0\.1$'
   - '^::1$'
 
+munin_node_allowed_cidrs: []
+munin_node_denied_cidrs: []
+
 # Source and destination of munin plugins.
 munin_plugin_src_path: /usr/share/munin/plugins/
 munin_plugin_dest_path: /etc/munin/plugins/
