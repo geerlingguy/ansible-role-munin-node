@@ -1,3 +1,7 @@
 ---
 - name: restart munin-node
   service: name=munin-node state=restarted
+
+- name: restart munin-async
+  service: name={{ munin_node_async_service }} state=restarted
+  when: munin_node_async

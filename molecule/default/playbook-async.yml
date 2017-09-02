@@ -1,0 +1,25 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    munin_node_async: true
+    munin_node_async_sshpubkeys: ['ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP/8Qg23DDX/E5wMxO6vW+bxZKED3eKpXS+0QlYdN+uK']
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+    - name: Install test dependencies (Debian).
+      package: name=netcat state=present
+      when: ansible_os_family == 'Debian'
+
+    - name: Install test dependencies (RedHat).
+      package: name=nc state=present
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - role: geerlingguy.munin-node

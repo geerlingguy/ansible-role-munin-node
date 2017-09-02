@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/geerlingguy/ansible-role-munin-node.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-munin-node)
 
 Installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
+It can optionally install munin-async, for asynchronous fetching over SSH.
 
 ## Requirements
 
@@ -56,6 +57,19 @@ This configuration will generate a configuration file at `/etc/munin/plugin-conf
     env.regex bash
     env.name bash
 
+### Munin-async configuration
+
+[munin-async](http://guide.munin-monitoring.org/en/latest/node/async.html) can optionally be installed to allow fetching munin data over SSH, using the following variables:
+
+    munin_node_async: false
+
+Whether to install and setup `munin-async`, disabled by default.
+
+    munin_node_async_sshpubkeys: []
+
+A list of SSH public key that will be installed in the munin-async user home, to allow the munin master node to connect via SSH.
+Should only be used if `munin_node_async` is true.
+
 ## Dependencies
 
 None.
@@ -63,6 +77,9 @@ None.
 ## Example Playbook
 
     - hosts: servers
+      vars:
+        munin_node_async: true
+        munin_node_async_sshpubkeys: ['ssh-rsa AAAAB3NzaC...']
       roles:
         - { role: geerlingguy.munin-node }
 

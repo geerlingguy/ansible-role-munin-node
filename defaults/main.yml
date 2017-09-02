@@ -29,3 +29,6 @@ munin_node_config: {
 #   "env.name": "bash"
 # }
 }
+
+munin_node_async: false
+munin_node_async_sshpubkeys: []

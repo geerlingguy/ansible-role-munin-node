@@ -1,3 +1,7 @@
 ---
 munin_node_log: /var/log/munin-node/munin-node.log
 munin_node_pid: /var/run/munin/munin-node.pid
+munin_node_async_service: munin-asyncd
+munin_node_async_home: /var/lib/munin-async
+munin_node_async_user: munin-async
+munin_node_async_group: munin-async
