@@ -26,6 +26,14 @@ Set this explicitly if the munin master doesn't report the correct hostname when
 
 A list of IP addresses formatted as a python-style regular expression. Must use single quotes to allow the proper regex escaping to pass through to the configuration file. Hosts with these IP addresses will be allowed to connect to the server and get detailed system stats via munin-node.
 
+    munin_node_allowed_cidrs: []
+
+A list of IP networks in CIDR format, for instance `10.0.0.0/8`. Hosts with an IP address in one of these networks will be allowed to connect to the server and get detailed system stats via munin-node.
+
+    munin_node_denied_cidrs: []
+
+A list of IP networks in CIDR format, for instance `10.42.0.0/16`. Hosts with an IP address in one of these networks will be denied access to the server. This takes precedence over `munin_node_allowed_cidrs`: an IP address that matches both a network in `munin_node_allowed_cidrs` and a network in `munin_node_denied_cidrs` will be denied access.
+
 ### Munin Plugin Configuration
 
 You can enable plugins using the `munin_node_plugins` list, like so:

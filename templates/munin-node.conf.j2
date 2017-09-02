@@ -55,6 +55,12 @@ allow {{ allowed_ip }}
 # cidr_allow 127.0.0.1/32
 # cidr_allow 192.0.2.0/24
 # cidr_deny  192.0.2.42/32
+{% for allowed_cidr in munin_node_allowed_cidrs %}
+cidr_allow {{ allowed_cidr }}
+{% endfor %}
+{% for denied_cidr in munin_node_denied_cidrs %}
+cidr_deny {{ denied_cidr }}
+{% endfor %}
 
 # Which address to bind to;
 host {{ munin_node_bind_host }}
