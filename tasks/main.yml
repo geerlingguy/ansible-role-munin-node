@@ -4,11 +4,25 @@
 
 - name: Ensure munin-node is installed (RedHat).
   yum: name=munin-node state=present enablerepo=epel
-  when: ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat' and not munin_node_async
+
+- name: Ensure munin-node and munin-async are installed (RedHat).
+  yum: name={{ item }} state=present
+  with_items:
+  - munin-node
+  - munin-async
+  when: ansible_os_family == 'RedHat' and munin_node_async
 
 - name: Ensure munin-node is installed (Debian).
   apt: name=munin-node state=present
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and not munin_node_async
+
+- name: Ensure munin-node and munin-async are installed (Debian).
+  apt: name={{ item }} state=present
+  with_items:
+  - munin-node
+  - munin-async
+  when: ansible_os_family == 'Debian' and munin_node_async
 
 - name: Copy munin-node configuration.
   template:
@@ -17,7 +31,9 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart munin-node
+  notify:
+    - restart munin-node
+    - restart munin-async
 
 - name: Generate plugin configuration.
   template:
@@ -26,7 +42,9 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart munin-node
+  notify:
+    - restart munin-node
+    - restart munin-async
 
 - name: Enable additional plugins.
   file:
@@ -34,7 +52,38 @@
     src: "{{ munin_plugin_src_path }}{{ item.plugin | default( item.name ) }}"
     state: link
   with_items: "{{ munin_node_plugins }}"
-  notify: restart munin-node
+  notify:
+    - restart munin-node
+    - restart munin-async
+
+- name: Create munin-async user on CentOS
+  user:
+    name: "{{ munin_node_async_user }}"
+    system: yes
+    home: "{{ munin_node_async_home }}"
+  when: ansible_os_family == 'RedHat' and munin_node_async
+
+- name: Ensure ~/.ssh/ exists for munin-async user
+  file:
+    path: "{{ munin_node_async_home }}/.ssh/"
+    state: directory
+    owner: "{{ munin_node_async_user }}"
+    group: "{{ munin_node_async_group }}"
+    mode: 0700
+  when: munin_node_async
+
+- name: Add SSH key to munin-async user
+  template:
+    src: munin-async-authorized_keys.j2
+    dest: "{{ munin_node_async_home }}/.ssh/authorized_keys"
+    owner: "{{ munin_node_async_user }}"
+    group: "{{ munin_node_async_group }}"
+    mode: 0600
+  when: munin_node_async and munin_node_async_sshpubkeys
 
 - name: Ensure munin-node is running.
   service: name=munin-node state=started enabled=yes
+
+- name: Ensure munin-async is running.
+  service: name={{ munin_node_async_service }} state=started enabled=yes
+  when: munin_node_async

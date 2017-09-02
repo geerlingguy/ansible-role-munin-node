@@ -1,0 +1,3 @@
+{% for sshpubkey in munin_node_async_sshpubkeys %}
+no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,command="/usr/share/munin/munin-async --spoolfetch" {{ sshpubkey }}
+{% endfor %}

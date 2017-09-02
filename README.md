@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/geerlingguy/ansible-role-munin-node.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-munin-node)
 
 Installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
+It can optionally install munin-async, for asynchronous fetching over SSH.
 
 ## Requirements
 
@@ -34,6 +35,17 @@ A list of IP networks in CIDR format, for instance `10.0.0.0/8`. Hosts with an I
     munin_node_denied_cidrs: []
 
 A list of IP networks in CIDR format, for instance `10.42.0.0/16`. Hosts with an IP address in one of these networks will be denied access to the server. This takes precedence over `munin_node_allowed_cidrs`: an IP address that matches both a network in `munin_node_allowed_cidrs` and a network in `munin_node_denied_cidrs` will be denied access.
+
+### Munin-async configuration
+
+    munin_node_async: false
+
+Whether to install and setup `munin-async`, disabled by default.
+
+    munin_node_async_sshpubkeys: []
+
+A list of SSH public key that will be installed in the munin-async user home, to allow the munin master node to connect via SSH.
+Should only be used if `munin_node_async` is true.
 
 ### Munin Plugin Configuration
 
@@ -72,6 +84,9 @@ None.
 ## Example Playbook
 
     - hosts: servers
+      vars:
+        munin_node_async: true
+        munin_node_async_sshpubkeys: ['ssh-rsa AAAAB3NzaC...']
       roles:
         - { role: geerlingguy.munin-node }
 
