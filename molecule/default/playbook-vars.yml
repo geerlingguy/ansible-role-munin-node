@@ -9,10 +9,12 @@
       - name: if_eth1
         plugin: if_
 
-    munin_node_config:
-      ps_test:
-        "env.regex": "bash"
+    munin_node_config: {
+      "ps_test": {
+        "env.regex": "bash",
         "env.name": "bash"
+      }
+    }
 
   pre_tasks:
     - name: Update apt cache.
