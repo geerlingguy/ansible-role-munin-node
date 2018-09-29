@@ -24,8 +24,8 @@ munin_node_plugins: []
 # Plugin configuration options (the key is the plugin heading, items within will
 # be options for the plugin).
 munin_node_config: {
-  # "ps_test": {
-  #   "env.regex": "bash",
-  #   "env.name": "bash"
-  # }
+# "ps_test": {
+#   "env.regex": "bash",
+#   "env.name": "bash"
+# }
 }
