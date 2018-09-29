@@ -10,14 +10,16 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-      - all
+        - all
     - name: Ubuntu
       versions:
-      - all
+        - all
     - name: EL
       versions:
-      - 6
-      - 7
+        - 6
+        - 7
   galaxy_tags:
     - monitoring
     - system
+    - munin
+    - metrics

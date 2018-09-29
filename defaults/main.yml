@@ -15,17 +15,15 @@ munin_plugin_dest_path: /etc/munin/plugins/
 
 # List of munin plugins to enable.
 munin_node_plugins: []
-  # - name: uptime
-  # - name: if_eth0
-  #   plugin: if_
-  # - name: ps_test
-  #   plugin: ps_
+# - name: uptime
+# - name: if_eth0
+#   plugin: if_
+# - name: ps_test
+#   plugin: ps_
 
-# Plugin configuration options (the key is the plugin heading, items in the
-# array will be options for the plugin).
-munin_node_config: {
-  # "ps_test": {
-  #   "env.regex": "bash",
-  #   "env.name": "bash"
-  # }
-}
+# Plugin configuration options (the key is the plugin heading, items within will
+# be options for the plugin).
+munin_node_config:
+# ps_test:
+#   "env.regex": "bash"
+#   "env.name": "bash"
