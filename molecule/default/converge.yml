@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+    - name: Install test dependencies (Debian).
+      package: name=netcat state=present
+      when: ansible_os_family == 'Debian'
+
+    - name: Install test dependencies (RedHat).
+      package: name=nc state=present
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - role: geerlingguy.munin-node
