@@ -14,12 +14,16 @@ munin_plugin_src_path: /usr/share/munin/plugins/
 munin_plugin_dest_path: /etc/munin/plugins/
 
 # List of munin plugins to enable.
-munin_node_plugins: []
+munin_node_plugins_enable: []
 # - name: uptime
 # - name: if_eth0
 #   plugin: if_
 # - name: ps_test
 #   plugin: ps_
+
+# List of munin plugins to disable.
+munin_node_plugins_disable: []
+  # - name: mysql_replication
 
 # Plugin configuration options (the key is the plugin heading, items within will
 # be options for the plugin).

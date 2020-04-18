@@ -33,7 +33,14 @@
     path: "{{ munin_plugin_dest_path }}{{ item.name }}"
     src: "{{ munin_plugin_src_path }}{{ item.plugin | default( item.name ) }}"
     state: link
-  with_items: "{{ munin_node_plugins }}"
+  with_items: "{{ munin_node_plugins_enable }}"
+  notify: restart munin-node
+
+- name: Disable unwanted plugins.
+  file:
+    path: "{{ munin_node_plugin_dest_path }}{{ item.plugin | default( item.name ) }}"
+    state: absent
+  with_items: "{{ munin_node_plugins_disable }}"
   notify: restart munin-node
 
 - name: Ensure munin-node is running.

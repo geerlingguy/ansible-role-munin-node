@@ -39,6 +39,11 @@ If the name of the resulting plugin does not match the name of the munin plugin 
       - name: if_eth0
         plugin: if_
 
+You can also disable plugins using the `munin_node_plugins_disable` list, like so:
+
+    munin_node_plugins_disable:
+      - name: mysql_replication
+
 #### Plugin settings
 
 If you need to add plugin configuration for plugins you've added via `munin_node_plugins`, you can do so with a simple hashmap that has the plugin name (which will be the `[plugin]` section in the resulting configuration file), and a list of variable names and values. For example:
