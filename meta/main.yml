@@ -2,7 +2,8 @@
 dependencies: []
 
 galaxy_info:
-  role_name: munin-node
+  # See: https://github.com/ansible/galaxy/issues/2393
+  # role_name: munin-node
   author: geerlingguy
   description: Munin node monitoring endpoint for RedHat/CentOS or Debian/Ubuntu.
   company: "Midwestern Mac, LLC"
