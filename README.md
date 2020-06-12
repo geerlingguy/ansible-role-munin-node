@@ -56,6 +56,16 @@ This configuration will generate a configuration file at `/etc/munin/plugin-conf
     env.regex bash
     env.name bash
 
+#### Install external plugins
+
+You can install external plugins via `munin_node_install_plugins`.
+Those plugins can be copied from local files or downloaded. For example:
+
+    munin_node_install_plugins: []
+      - src: files/munin/redis_
+      - remote_src: https://raw.githubusercontent.com/ohitz/phpfpm-multi-munin-plugin/master/phpfpm-multi
+
+
 ## Dependencies
 
 None.
