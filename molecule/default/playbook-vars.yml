@@ -1,9 +1,24 @@
 ---
-- hosts: all
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    munin_node_plugins:
+      - name: uptime
+      - name: if_eth1
+        plugin: if_
+
+    munin_node_config: {
+      "ps_test": {
+        "env.regex": "bash",
+        "env.name": "bash"
+      }
+    }
 
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=yes
+      apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
       changed_when: false
 
@@ -16,4 +31,4 @@
       when: ansible_os_family == 'RedHat'
 
   roles:
-    - role_under_test
+    - role: geerlingguy.munin-node
