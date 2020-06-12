@@ -26,8 +26,8 @@ munin_node_install_plugins: []
   # - src: files/munin/redis_
   # - remote_src: https://raw.githubusercontent.com/ohitz/phpfpm-multi-munin-plugin/master/phpfpm-multi
 
-# Plugin configuration options (the key is the plugin heading, items in the
-# array will be options for the plugin).
+# Plugin configuration options (the key is the plugin heading, items within will
+# be options for the plugin).
 munin_node_config: {
   # "ps_test": {
   #   "env.regex": "bash",
