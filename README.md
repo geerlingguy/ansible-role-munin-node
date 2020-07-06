@@ -23,6 +23,7 @@ Set this explicitly if the munin master doesn't report the correct hostname when
 
     munin_node_allowed_ips:
       - '^127\.0\.0\.1$'
+      - '^::1$'
 
 A list of IP addresses formatted as a python-style regular expression. Must use single quotes to allow the proper regex escaping to pass through to the configuration file. Hosts with these IP addresses will be allowed to connect to the server and get detailed system stats via munin-node.
 
