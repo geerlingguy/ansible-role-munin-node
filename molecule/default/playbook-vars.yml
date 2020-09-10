@@ -4,6 +4,8 @@
   become: true
 
   vars:
+    munin_node_allowed_cidrs: ['10.0.0.0/8', '2001:db8::/32']
+    munin_node_denied_cidrs: ['10.42.0.0/16', '2001:db8:42::/48']
     munin_node_plugins:
       - name: uptime
       - name: if_eth1

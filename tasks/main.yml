@@ -46,8 +46,8 @@
   when: item.remote_src is defined
   notify: restart munin-node
 
-- name: Enable plugins.
-  file:
+- name: Enable additional plugins.
+  file:  # noqa 208
     path: "{{ munin_plugin_dest_path }}{{ item.name }}"
     src: "{{ munin_plugin_src_path }}{{ item.plugin | default( item.name ) }}"
     state: link
