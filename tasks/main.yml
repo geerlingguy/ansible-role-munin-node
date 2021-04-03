@@ -28,6 +28,24 @@
     mode: 0644
   notify: restart munin-node
 
+- name: Install extra plugins.
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ munin_plugin_src_path }}{{ item.src | basename }}"
+    mode: '0755'
+  with_items: "{{ munin_node_install_plugins }}"
+  when: item.src is defined
+  notify: restart munin-node
+
+- name: Install extra remote plugins.
+  get_url:
+    url: "{{ item.remote_src }}"
+    dest: "{{ munin_plugin_src_path }}{{ item.remote_src | basename }}"
+    mode: '0755'
+  with_items: "{{ munin_node_install_plugins }}"
+  when: item.remote_src is defined
+  notify: restart munin-node
+
 - name: Enable additional plugins.
   file:  # noqa 208
     path: "{{ munin_plugin_dest_path }}{{ item.name }}"
