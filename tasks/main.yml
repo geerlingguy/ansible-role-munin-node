@@ -11,7 +11,7 @@
   when: ansible_os_family == 'Debian'
 
 - name: Ensure munin-node is installed (OpenBSD).
-  community.general.openbsd_pkg: name=munin-node state=present
+  openbsd_pkg: name=munin-node state=present
   when: ansible_os_family == 'OpenBSD'
 
 - name: Copy munin-node configuration.
