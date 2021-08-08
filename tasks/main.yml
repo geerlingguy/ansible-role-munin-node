@@ -37,4 +37,4 @@
   notify: restart munin-node
 
 - name: Ensure munin-node is running.
-  service: name=munin-node state=started enabled=yes
+  service: name={{ munin_node_service }} state=started enabled=yes
