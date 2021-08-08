@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/geerlingguy/ansible-role-munin-node/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-munin-node/actions?query=workflow%3ACI)
 
-Installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
+Installs munin-node, a monitoring system endpoint, on RedHat/CentOS, Debian/Ubuntu, or OpenBSD servers.
 
 ## Requirements
 

@@ -4,7 +4,7 @@ dependencies: []
 galaxy_info:
   role_name: munin-node
   author: geerlingguy
-  description: Munin node monitoring endpoint for RedHat/CentOS or Debian/Ubuntu.
+  description: Munin node monitoring endpoint for RedHat/CentOS, Debian/Ubuntu and OpenBSD.
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
@@ -19,6 +19,9 @@ galaxy_info:
       versions:
         - 7
         - 8
+    - name: OpenBSD
+      versions:
+        - all
   galaxy_tags:
     - monitoring
     - system
