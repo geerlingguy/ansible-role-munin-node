@@ -1,0 +1,7 @@
+---
+munin_node_log: /var/log/munin/munin-node.log
+munin_node_pid: /var/run/munin/munin-node.pid
+munin_node_user: root
+munin_node_group: wheel
+munin_node_service: munin_node
+munin_plugin_src_path: /usr/local/libexec/munin/plugins/
