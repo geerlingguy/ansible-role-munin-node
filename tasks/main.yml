@@ -14,8 +14,8 @@
   template:
     src: munin-node.conf.j2
     dest: /etc/munin/munin-node.conf
-    owner: root
-    group: root
+    owner: "{{ munin_node_user }}"
+    group: "{{ munin_node_group }}"
     mode: 0644
   notify: restart munin-node
 
@@ -23,8 +23,8 @@
   template:
     src: plugin-conf.j2
     dest: /etc/munin/plugin-conf.d/ansible.conf
-    owner: root
-    group: root
+    owner: "{{ munin_node_user }}"
+    group: "{{ munin_node_group }}"
     mode: 0644
   notify: restart munin-node
 

@@ -9,8 +9,8 @@ pid_file {{ munin_node_pid }}
 background 1
 setsid 1
 
-user root
-group root
+user {{ munin_node_user }}
+group {{ munin_node_group }}
 
 # This is the timeout for the whole transaction.
 # Units are in sec. Default is 15 min
