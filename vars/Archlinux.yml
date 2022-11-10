@@ -1,0 +1,4 @@
+---
+munin_node_log: /var/log/munin/munin-node.log
+munin_node_pid: /run/munin/munin-node.pid
+munin_plugin_src_path: /usr/lib/munin/plugins/
