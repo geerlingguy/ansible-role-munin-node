@@ -1,7 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  become: true
+  #become: true
 
   vars:
     munin_node_allowed_cidrs: ['10.0.0.0/8', '2001:db8::/32']
