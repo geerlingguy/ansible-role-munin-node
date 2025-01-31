@@ -1,6 +1,6 @@
 # Ansible Role: Munin Node
 
-[![CI](https://github.com/geerlingguy/ansible-role-munin-node/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-munin-node/actions?query=workflow%3ACI)
+[![CI](https://github.com/geerlingguy/ansible-role-munin-node/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/ansible-role-munin-node/actions/workflows/ci.yml)
 
 Installs munin-node, a monitoring system endpoint, on RedHat/CentOS or Debian/Ubuntu Linux servers.
 
