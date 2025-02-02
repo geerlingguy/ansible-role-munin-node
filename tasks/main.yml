@@ -22,7 +22,7 @@
 - name: Generate plugin configuration.
   template:
     src: plugin-conf.j2
-    dest: /etc/munin/plugin-conf.d/ansible.conf
+    dest: /etc/munin/plugin-conf.d/zzz-ansible.conf
     owner: root
     group: root
     mode: 0644
