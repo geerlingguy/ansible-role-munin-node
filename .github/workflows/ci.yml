@@ -41,11 +41,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro: rockylinux9
+          - distro: rockylinux10
             playbook: converge.yml
-          - distro: ubuntu2004
+          - distro: ubuntu2404
             playbook: converge.yml
-          - distro: rockylinux9
+          - distro: rockylinux10
             playbook: playbook-vars.yml
 
     steps:
