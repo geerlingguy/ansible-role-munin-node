@@ -5,16 +5,22 @@
 
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=true
+      apt:
+        update_cache: true
+        cache_valid_time: 600
       when: ansible_facts.os_family == 'Debian'
       changed_when: false
 
     - name: Install test dependencies (Debian).
-      package: name=netcat state=present
+      package:
+        name: netcat-traditional
+        state: present
       when: ansible_facts.os_family == 'Debian'
 
     - name: Install test dependencies (RedHat).
-      package: name=nc state=present
+      package:
+        name: nc
+        state: present
       when: ansible_facts.os_family == 'RedHat'
 
   roles:
