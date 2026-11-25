@@ -3,6 +3,9 @@
   hosts: all
   #become: true
 
+  vars:
+    munin_node_bind_host: 0.0.0.0
+
   pre_tasks:
     - name: Update apt cache.
       apt:
